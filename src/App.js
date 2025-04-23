@@ -1,15 +1,10 @@
-import React, { useState } from 'react';
+// src/App.js
+import AppCounter from './AppCounter';
+// import AppTodo from './AppTodo'; // 필요 시 주석 해제
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <div style={{ textAlign: 'center', marginTop: '100px' }}>
-      <h1>카운터: {count}</h1>
-      <button onClick={() => setCount(count + 1)}>증가</button>
-      <button onClick={() => setCount(count - 1)}>감소</button>
-    </div>
-  );
+  return <AppCounter />;
+  // return <AppTodo />;
 }
 
 export default App;
