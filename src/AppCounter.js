@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+//리액트란 
+//컴포넌트 나누고 porps 로 데이터전달
 function App() {
   const [count, setCount] = useState(0);
 
