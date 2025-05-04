@@ -1,33 +1,31 @@
-//유저리스트 + 추가 폼
+'use client';
 
-'use client';//클라이언트컴포넌트 선언
+import { useState } from 'react';
+import UserList from '../../components/UserList';
+import UserForm from '../../components/UserForm';
+//User 타입공통화
+import { User } from '../types/User'; 
 
-import {useEffect, useState} from 'react';
 
-interface User{
-    name:String;
-    id: number;
-}
-export default function UserList () {
-    //초기값 필요 없으면 에러 
-    // const [user, setUser] = useState<{ name: string; age: number }>;
-    const [users, setUsers] = useState<User[]>([]);
-    useEffect(() => {
-        fetch('/api/users')
-        .then(res=>res.json())
-        .then((data) => {
-            console.log(data)
-            setUsers(data)});
-    },[]);
+// interface User {
+//   id: number;
+//   name: string;
+// }
 
-    return (
-        <div>
-        <h1>UserList</h1>
-        <ul>
-        {users.map((user) => (
-          <li key={user.id}>{user.name}</li>
-        ))}
-      </ul>
-      </div>
-    )
+export default function UsersPage() {
+  const [users, setUsers] = useState<User[]>([]);
+
+  const handleAddUser = (name: string) => {
+    const newUser = { id: Date.now(), name };
+    //...prev : 전개연산자 얕은복사 주의
+    setUsers(prev => [...prev, newUser]);
+  };
+
+  return (
+    <div>
+      <h1>유저 목록</h1>
+      <UserList users={users} />
+      <UserForm onAdd={handleAddUser} />
+    </div>
+  );
 }
