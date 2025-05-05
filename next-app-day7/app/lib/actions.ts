@@ -14,11 +14,17 @@ export async function getUsers() {
   return users
 }
 
-export async function addUser(formData: FormData) {
-  const name = formData.get('name') as string
+export async function addUser(prevState: any,formData: FormData) {
+    const name = formData.get('name')?.toString().trim()
+  if (!name) {
+    return { success: false, message: '이름을 입력해주세요.' }
+  }
+
   const newUser = { id: Date.now(), name }
   users.push(newUser)
   revalidatePath('/users')
+
+  return { success: true }
 }
 
 //사용자 삭제

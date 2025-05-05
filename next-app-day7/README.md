@@ -29,3 +29,5 @@ revalidatePath('/users')로 새로고침 없이 업데이트
 컴포넌트는 'use client'로 선언한 것만 클라이언트에서 동작
 
 나머지는 서버에서 처리되며, 비동기 로직도 가능
+
+![alt text](image.png)
